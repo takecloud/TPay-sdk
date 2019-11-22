@@ -1,5 +1,5 @@
 {
-  "name": "takecloud/TPay-sdk",
+  "name": "takecloud/tpay-sdk",
   "description": "The TPay SDK",
   "require": {
     "php-curl-class/php-curl-class": "^8.3",
