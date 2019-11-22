@@ -205,7 +205,7 @@ class Client
         return $result;
     }
 
-    protected function generateSign($params)
+    public function generateSign($params)
     {
         // 对参数字典序排序
         ksort($params,SORT_STRING);
