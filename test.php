@@ -24,7 +24,7 @@ $response = $client->barcodePay($params);*/
 
 
 // 通过helper直接发起请求
-/*$response = TPayManager::barcodePay($client, 1, 'FZY2019112101', 0.01, 'authcode',
+/*$response = TPayManager::barcodePay($client, 1, 'FZY2019112204', 0.03, 'xxxxxxxxxxxxxxx',
     '测试订单', '测试订单');*/
 
 //$response = TPayManager::preCreate($client, 1, 'FZY2019112201', 0.01, '测试订单', '测试订单');
@@ -35,9 +35,9 @@ $response = $client->barcodePay($params);*/
 
 //$response = TPayManager::cancel($client, 1, 'FZY2019112202');
 
-//$response = TPayManager::refund($client, 1, 0.01, 0.01, 'FZY2019112201', 'FZY2019112201');
+$response = TPayManager::refund($client, 1, 0.01, 0.03, 'FZY201911220403', 'FZY2019112204');
 
-$response = TPayManager::refundQuery($client, 1, 'FZY2019112201', 'FZY2019112201');
+//$response = TPayManager::refundQuery($client, 1, 'FZY2019112201', 'FZY2019112201');
 
 echo PHP_EOL;
 echo $response;

@@ -8,12 +8,14 @@
 namespace TPay;
 
 
+use TPay\AddWeChatConfig\AddWeChatConfigParams;
 use TPay\BarcodePay\BarcodePayParams;
 use TPay\PreCreate\PreCreateParams;
 use TPay\Refund\RefundParams;
 use TPay\RefundQuery\RefundQueryParams;
 use TPay\TradeCancel\TradeCancelParams;
 use TPay\TradeCreate\TradeCreateParams;
+use TPay\TradeCreate\TradeCreateResponse;
 use TPay\TradeQuery\TradeQueryParams;
 
 class TPayManager
@@ -163,7 +165,7 @@ class TPayManager
      * @param $body
      * @param $buyerId
      * @param string $notifyURL
-     * @return PreCreate\TradeCreateResponse
+     * @return TradeCreateResponse
      * @throws ParamsException
      * @throws RequestException
      */
@@ -322,5 +324,44 @@ class TPayManager
         $params = self::newTradeCancelParams($payType, $outTradeNo, $channelTradeNo);
 
         return $client->cancel($params);
+    }
+
+    /**
+     * 获取新的添加微信开发配置参数对象
+     * @param string $appid
+     * @param string $path
+     * @param string $subscribeAppid
+     * @return AddWeChatConfigParams
+     * @throws ParamsException
+     */
+    public static function newAddWeChatConfigParams($appid = '', $path = '', $subscribeAppid = '')
+    {
+        $params = new AddWeChatConfigParams();
+        $params->setSubscribeAppid($subscribeAppid);
+        $params->setAppid($appid);
+        $params->setPath($path);
+
+        if (empty($params->getData())) {
+            throw new ParamsException('appid,path,subscribeAppid 不能同时为空');
+        }
+
+        return $params;
+    }
+
+    /**
+     * 添加微信开发配置
+     * @param Client $client
+     * @param string $appid
+     * @param string $path
+     * @param string $subscribeAppid
+     * @return AddWeChatConfig\AddWeChatConfigResponse
+     * @throws ParamsException
+     * @throws RequestException
+     */
+    public static function addWeChatConfig(Client $client, $appid = '', $path = '', $subscribeAppid = '')
+    {
+        $params = self::newAddWeChatConfigParams($appid, $path, $subscribeAppid);
+
+        return $client->addWeChatConfig($params);
     }
 }

@@ -8,6 +8,8 @@
 namespace TPay;
 
 
+use TPay\AddWeChatConfig\AddWeChatConfigParams;
+use TPay\AddWeChatConfig\AddWeChatConfigResponse;
 use TPay\BarcodePay\BarcodePayParams;
 use TPay\BarcodePay\BarcodePayResponse;
 use TPay\PreCreate\PreCreateParams;
@@ -151,6 +153,22 @@ class Client
     }
 
     /**
+     * 添加微信开发配置
+     * @param AddWeChatConfigParams $params
+     * @return AddWeChatConfigResponse
+     * @throws ParamsException
+     * @throws RequestException
+     */
+    public function addWeChatConfig(AddWeChatConfigParams $params)
+    {
+        $response = new AddWeChatConfigResponse();
+
+        $this->request('open/merchant/addWeChatConfig', $params, $response);
+
+        return $response;
+    }
+
+    /**
      * 发起请求
      * @param $api
      * @param BaseParams $params
@@ -171,7 +189,6 @@ class Client
         $rawData['sign'] = $this->generateSign($rawData);
 
         $result = json_decode($this->curlPOST($this->domain . $api, $rawData), true);
-        var_dump($result);
 
         // 转为response对象
         if (!is_null($response)) {
