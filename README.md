@@ -16,7 +16,7 @@ use \TPay\TPayManager;
 $client = TPayManager::newClient('your merchantNo', 'your secretKey');
 ```
 
-### 通过Manner使用
+### 通过Manager使用
 ```php
 <?php
 use \TPay\TPayManager;
