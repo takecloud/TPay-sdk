@@ -1,0 +1,20 @@
+{
+  "name": "takecloud/TPay-sdk",
+  "description": "The TPay SDK",
+  "require": {
+    "php-curl-class/php-curl-class": "^8.3",
+    "ext-curl": ">0.1",
+    "ext-json": ">0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "TPay\\": "Src/"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
+}
